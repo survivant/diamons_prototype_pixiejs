@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Diamonds DEMO</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #000000;
+    }
+    h1{
+      color: white;
+    }
+  </style>
+  <script src="js/underscore-min.js"></script>
+  <script src="js/pixi.dev.js"></script>
+  <script src="js/gamefield.js"></script>
+  <script src="js/gamefield_entity.js"></script>
+</head>
+<body>
+
+  <script>
+
+  // create an new instance of a pixi stage
+    var stage = new PIXI.Stage(0x66FF99,true); // true for interface stage
+ 
+    // create a renderer instance.
+    var renderer = PIXI.autoDetectRenderer(800, 600);
+ 
+    // add the renderer view element to the DOM
+    document.body.appendChild(renderer.view);
+ 
+    requestAnimFrame( animate );
+ 
+    
+    game_field = new GameField(stage);
+    // create a texture from an image path
+    
+    /*
+    // create a new Sprite using the texture
+    var bunny = new PIXI.Sprite(texture);
+ 
+    // center the sprites anchor point
+    bunny.anchor.x = 0.5;
+    bunny.anchor.y = 0.5;
+ 
+    // move the sprite t the center of the screen
+    bunny.position.x = 200;
+    bunny.position.y = 150;*/
+ 
+    
+ 
+    function animate(delta) {
+        requestAnimFrame( animate );
+ 
+         // render the stage   
+        renderer.render(stage);
+    
+    }
+
+    
+  </script>
+
+  </body>
+</html>
