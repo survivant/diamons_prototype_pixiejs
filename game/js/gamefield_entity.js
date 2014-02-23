@@ -17,6 +17,9 @@ function GameFieldEntity(gamefield_object,pos_x,pos_y,type) {
 	this.setInteractive(true);
 	this.click = function(mouseData){
 		this.gamefield_object.clicked_on_entity(this);
+		var sound = new Howl({
+  			urls: ['/data/click.wav']
+			}).play();
 	}
 	    
 	this.gamefield_object.stage.addChild(this);

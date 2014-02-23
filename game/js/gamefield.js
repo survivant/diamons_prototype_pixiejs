@@ -7,16 +7,7 @@ function GameField(stage) {
 	// creating the game field
 	this.game_field = new Array();
 
-
-	for(x = 0; x < 8; x++){
-	  this.game_field[x] = new Array();
-	  for(y = 0; y < 8; y++){
-
-	  	var etype = this.generate_new_entity(this.game_field,x,y);
-	    var game_field_entity = new GameFieldEntity(this,x,y,etype);    
-	    this.game_field[x][y] = game_field_entity;
-	  }
-	}
+	this.fill_up_game_field();
 }
 
 GameField.constructor = GameField;
@@ -155,6 +146,7 @@ GameField.prototype.find_matching = function(){
 	/* we need to create a copy of the game field
 	 * to swap clicked_object_one and ..two
 	 */
+	 console.log("GameField.prototype.find_matching started");
 	var found_some_matching = false;
 	temp_game_field = this.copy_of_game_field();
 	temp_game_field = this.swap_entities(temp_game_field,this.clicked_object_one,this.clicked_object_two);
@@ -163,6 +155,7 @@ GameField.prototype.find_matching = function(){
 		for(row = 0; row < 8; row++){
 			var found_matching_columns = this.find_in_column(temp_game_field,col,row);
 			var found_matching_rows = this.find_in_row(temp_game_field,col,row);
+			console.log(found_matching_rows);
 
 			// TODO: optimize the code below
 
@@ -182,14 +175,22 @@ GameField.prototype.find_matching = function(){
 			
 			if(found_matching_entities){ // check if we found machting entities
 				// if found_matching contains one of the clicked objects, we need to change their drawing position on the pixie stage too
-				if(_.indexOf(found_matching_entities,this.clicked_object_one) || _.indexOf(found_matching_entities,this.clicked_object_one)){
+				if(_.indexOf(found_matching_entities,this.clicked_object_one) || _.indexOf(found_matching_entities,this.clicked_object_two)){
 					console.log("swapping positions");
 					this.swap_entity_positions(this.game_field,this.clicked_object_one,this.clicked_object_two);
 				}
 				this.remove_entites(found_matching_entities); // removing the entities from the game_field
+				var sound = new Howl({
+  					urls: ['/data/explosion.wav']
+				}).play();
 			}
 		} // end of row loop
 	} // end of col loop
+
+	if(this.rebuild_game_field()){
+		this.find_matching();
+	}
+	console.log("GameField.prototype.find_matching finished");
 }
 
 GameField.prototype.find_in_column = function(t_game_field,col,row){
@@ -230,7 +231,7 @@ GameField.prototype.find_in_row = function(t_game_field,col,row){
 	var found_matching = new Array();
 	var stop_searching = false;
 
-	for(in_row = col; in_row < 7; in_row++){
+	for(in_row = row; in_row < 7; in_row++){
 		if(stop_searching == false){
 			//console.log("find_in_column checking: " + in_col + "/" + row);
 			current_entity = t_game_field[col][in_row];
@@ -269,4 +270,53 @@ GameField.prototype.remove_entites = function(entities){
 GameField.prototype.remove_entity = function(entity){
 	this.stage.removeChild(entity);
 	this.game_field[entity.column][entity.row] = null;
-}	
+}
+
+GameField.prototype.rebuild_game_field = function(){
+
+	var found_something_to_move_down = false;
+	while(this.move_down_all_entities()){
+		found_something_to_move_down = true;
+	}
+
+	this.fill_up_game_field();
+	return found_something_to_move_down;
+}
+
+GameField.prototype.move_down_all_entities = function(){
+	var check = false;
+	for(column = 0; column < 8; column++){
+		for(row = 0; row < 8; row++){
+			// is the current entity in the loop not empty?
+			if(this.game_field[column][row] != null){
+				// check if the entity place below is empty
+				if(typeof this.game_field[column][row+1] !== "undefined" && this.game_field[column][row+1] == null){
+					// ok, move it down
+					this.game_field[column][row+1] = this.game_field[column][row];
+					this.game_field[column][row] = null;
+					this.game_field[column][row+1].row +=1;
+					this.game_field[column][row+1].position.y += 64;
+
+					check = true;
+				}
+			}
+		} // row loop
+	} // column loop
+	return check;
+} // end of move_down_all_entities
+
+GameField.prototype.fill_up_game_field = function(){
+	for(x = 0; x < 8; x++){
+		if(typeof this.game_field[x] === "undefined"){
+			this.game_field[x] = new Array();		
+		}
+	  
+	  	for(y = 0; y < 8; y++){
+	  		if(this.game_field[x][y] == null){
+	  			var etype = this.generate_new_entity(this.game_field,x,y);
+	    		var game_field_entity = new GameFieldEntity(this,x,y,etype);    
+	    		this.game_field[x][y] = game_field_entity;
+	  		}
+	  	} // y
+	} // x
+}
