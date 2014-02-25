@@ -32,6 +32,7 @@ GameFieldEntity.prototype.type = null;
 GameFieldEntity.prototype.column = null;
 GameFieldEntity.prototype.row = null;
 GameFieldEntity.prototype = Object.create(PIXI.Sprite.prototype);
+GameFieldEntity.prototype.earned_points = null;
 
 GameFieldEntity.prototype.to_string = function(){
 	return this.column + "/" + this.row + "/" + this.type;
