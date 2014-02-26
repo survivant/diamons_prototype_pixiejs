@@ -15,7 +15,17 @@ function GameFieldEntity(gamefield_object,pos_x,pos_y,type) {
 	this.position.x = 32 + (pos_x * 64);
 	this.position.y = 32 + (pos_y * 64);
 	this.setInteractive(true);
+	
+	// for desktop version
 	this.click = function(mouseData){
+		this.gamefield_object.clicked_on_entity(this);
+		var sound = new Howl({
+  			urls: ['/data/click.wav']
+			}).play();
+	}
+
+	// mobile version of click
+	this.tap = function(mouseData){
 		this.gamefield_object.clicked_on_entity(this);
 		var sound = new Howl({
   			urls: ['/data/click.wav']

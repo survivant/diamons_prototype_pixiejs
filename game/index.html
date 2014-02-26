@@ -1,9 +1,10 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-  <title>Diamonds DEMO</title>
+  <title>DIAMONDS!</title>
   <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
-
+  <meta name="description" content="a match 3 or more HTML5 game prototype written in javascript & and pixie.js"/>
+  <meta property="og:image" content="http://gamedev.polyvision.org/diamonds/og_image.jpg"/>
   <style>
     body {
       margin: 0;
@@ -13,9 +14,13 @@
       width: 512px;
       margin:auto;
     }
+    .game_introduction{
+      text-align:center;
+    }
 
     .heading{
-      font-size: 15pt;
+      font-size: 18pt;
+      text-align: center;
     }
   </style>
 
@@ -30,19 +35,78 @@
  <div class="container">
   <div class="row">
     <div class="col-md-12 heading">
-      <strong>DIAMONDS!</strong> - a match 3 or more game prototype written in javascript &amp; and pixie.js
+      <h1>DIAMONDS!</h1>
+      <strong>a match 3 or more HTML5 game prototype written in javascript &amp; and pixie.js</strong>
     </div>
     </div>
 
     <div id="game_container"></div>
-    This really small game was an x
-    the code can be found on <a href="https://github.com/polyvision/diamons_prototype_pixiejs" target="_blan">github</a>
-    gem &amp; diamonds graphics by <a href="http://opengameart.org/content/gem-jewel-diamond-glass" target="_blank">Ville Seppanen</a>
+    <div class="game_introduction">
+      <small>select diamonds by clicking on them, reload the page to restart the game</small>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Introduction</h3>
+      </div>
+      <div class="panel-body">
+      I coded this small game to learn some HTML5 game development with <a href="http://www.pixijs.com/">pixie.js</a>. 
+      The code can be found on <a href="https://github.com/polyvision/diamons_prototype_pixiejs" target="_blan">github</a>.
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">26. feburary 2014 - first public release</h3>
+      </div>
+      <div class="panel-body">
+      The first public version of my DIAMONDS! HTML5 game prototype got released today. In the last two days,
+      I nearly spent 10 hours to find one stupid bug which I erased yesterday finally. The most simple bugs are often the worst bugs to find. There might be some glitches left but overall the prototype just runs fine as far as I tested the code.
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Credits</h3>
+      </div>
+      <div class="panel-body">
+      <p>
+        game code by Alexander Bierbrauer
+      </p>
+      <p>
+        gem &amp; diamonds graphics by <a href="http://opengameart.org/content/gem-jewel-diamond-glass" target="_blank">Ville Seppanen</a>
+      </p>
+      <p>
+        sound effects are from <a href="http://www.freesound.org/">freesounds.org</a> and <a href="http://www.findsounds.com/ISAPI/search.dll?keywords=mouse+click">findsounds.com</a>
+      </p>
+      </div>
+    </div>    
+
+        <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'pvgamedev'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    
   </div>
 
 <a href="https://github.com/polyvision/diamons_prototype_pixiejs"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://github-camo.global.ssl.fastly.net/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
 
 
+<div id="footer">
+      <div class="container">
+        <p class="text-muted">&copy 2014 by Alexander Bierbrauer. <a href="http://www.polyvision.org/kontakt/">Imprint</a></p>
+      </div>
+    </div>
 
   <script>
 
@@ -77,5 +141,26 @@
 
     
   </script>
+
+
+
+
+
+  <!-- Piwik -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push(["setCookieDomain", "*.gamedev.polyvision.org"]);
+  _paq.push(["trackPageView"]);
+  _paq.push(["enableLinkTracking"]);
+
+  (function() {
+    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://stats.polyvision.org/";
+    _paq.push(["setTrackerUrl", u+"piwik.php"]);
+    _paq.push(["setSiteId", "9"]);
+    var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
+    g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Piwik Code -->
   </body>
 </html>
