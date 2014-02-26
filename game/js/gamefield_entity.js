@@ -20,7 +20,7 @@ function GameFieldEntity(gamefield_object,pos_x,pos_y,type) {
 	this.click = function(mouseData){
 		this.gamefield_object.clicked_on_entity(this);
 		var sound = new Howl({
-  			urls: ['/data/click.wav']
+  			urls: ['data/click.wav','data/click.mp3']
 			}).play();
 	}
 
@@ -28,7 +28,7 @@ function GameFieldEntity(gamefield_object,pos_x,pos_y,type) {
 	this.tap = function(mouseData){
 		this.gamefield_object.clicked_on_entity(this);
 		var sound = new Howl({
-  			urls: ['/data/click.wav']
+  			urls: ['data/click.wav','data/click.mp3']
 			}).play();
 	}
 	    

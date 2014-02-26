@@ -237,7 +237,7 @@ GameField.prototype.find_matching = function(){
 				}
 
 				var sound = new Howl({
-  					urls: ['/data/explosion.wav']
+  					urls: ['data/explosion.wav']
 				}).play();
 
 				//console.log("after removal gamefield");
